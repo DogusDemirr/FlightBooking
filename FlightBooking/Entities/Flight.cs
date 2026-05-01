@@ -24,6 +24,10 @@ namespace FlightBooking.Entities
         /// </summary>
         public string DepartureAirportCode { get; set; }
         /// <summary>
+        /// DepartureAirportCode
+        /// </summary>
+        public string DepartureAirportName { get; set; }
+        /// <summary>
         /// ArrivalAirportCode
         /// </summary>
         public string ArrivalAirportCode { get; set; }

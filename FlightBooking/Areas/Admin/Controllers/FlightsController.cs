@@ -16,7 +16,7 @@ namespace FlightBooking.Areas.Admin.Controllers
 
         public async Task<ActionResult> FlightList()
         {
-            var values = _flightService.GetAllFlightsAsync();
+            var values = await _flightService.GetAllFlightsAsync();
             return View(values);
         }
 
