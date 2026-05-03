@@ -18,16 +18,17 @@ namespace FlightBooking.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> CreateBooking(string id)
         {
+            var viewBag = ViewBag;
             var value = await _flightService.GetFlightByIdAsync(id);
-            ViewBag.id = id;
-            ViewBag.FlightNumber = value.FlightNumber;
-            ViewBag.DepartureAirportCode = value.DepartureAirportCode;
-            ViewBag.DepartureAirportName = value.DepartureAirportName;
-            ViewBag.ArrivalAirportCode = value.ArrivalAirportCode;
-            ViewBag.ArrivalAirportName = value.ArrivalAirportName;
-            ViewBag.DepartureTime = value.DepartureTime;
-            ViewBag.ArrivalTime = value.ArrivalTime;
-            ViewBag.AirlineCode = value.AirlineCode;
+            viewBag.id = id;
+            viewBag.FlightNumber = value.FlightNumber;
+            viewBag.DepartureAirportCode = value.DepartureAirportCode;
+            viewBag.DepartureAirportName = value.DepartureAirportName;
+            viewBag.ArrivalAirportCode = value.ArrivalAirportCode;
+            viewBag.ArrivalAirportName = value.ArrivalAirportName;
+            viewBag.DepartureTime = value.DepartureTime;
+            viewBag.ArrivalTime = value.ArrivalTime;
+            viewBag.AirlineCode = value.AirlineCode;
             return View();
         }
 
