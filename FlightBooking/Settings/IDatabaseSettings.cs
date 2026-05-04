@@ -14,5 +14,9 @@
         /// FlightCollectionName
         /// </summary>
         public string FlightCollectionName { get; set; }
+        /// <summary>
+        /// BookingCollectionName
+        /// </summary>
+        public string BookingCollectionName { get; set; }
     }
 }

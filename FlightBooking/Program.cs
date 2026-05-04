@@ -1,3 +1,4 @@
+using FlightBooking.Services.BookingServices;
 using FlightBooking.Services.FlightServices;
 using FlightBooking.Settings;
 using Microsoft.CodeAnalysis;
@@ -7,6 +8,7 @@ using System.Reflection;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IFlightService, FlightService>();
+builder.Services.AddScoped<IBookingService, BookingService>();
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection("DatabaseSettingsKey"));

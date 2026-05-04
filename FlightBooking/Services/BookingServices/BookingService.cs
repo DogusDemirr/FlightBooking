@@ -6,15 +6,15 @@ using MongoDB.Driver;
 
 namespace FlightBooking.Services.BookingServices
 {
-    public class BookingService
+    public class BookingService : IBookingService
     {
-         private readonly IMongoCollection<Booking> _bookingCollection;
+        private readonly IMongoCollection<Booking> _bookingCollection;
         private readonly IMongoCollection<Flight> _flightCollection;
         public BookingService(IDatabaseSettings settings)
         {
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
-            _bookingCollection = database.GetCollection<Booking>("Bookings");
+            _bookingCollection = database.GetCollection<Booking>(settings.BookingCollectionName);
             _flightCollection = database.GetCollection<Flight>(settings.FlightCollectionName);
         }
 
