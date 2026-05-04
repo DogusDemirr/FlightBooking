@@ -1,10 +1,11 @@
-﻿using FlightBooking.Dtos.BookingDtos;
+﻿using FlightBooking.Constants;
+using FlightBooking.Dtos.BookingDtos;
 using FlightBooking.Services.FlightServices;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FlightBooking.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area(ProjectContants.ADMIN)]
     public class BookingController : Controller
     {
         private readonly IFlightService _flightService;
