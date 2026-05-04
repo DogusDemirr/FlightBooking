@@ -18,5 +18,9 @@
         /// Gender
         /// </summary>
         public string Gender { get; set; }
+        /// <summary>
+        /// PassengerTypee
+        /// </summary>
+        public string PassengerType { get; set; }
     }
 }

@@ -3,6 +3,11 @@
     public class Passenger
     {
         /// <summary>
+        /// PassengerId
+        /// </summary>
+        public string PassengerId { get; set; }
+
+        /// <summary>
         /// Name
         /// </summary>
         public string Name { get; set; }
@@ -18,5 +23,13 @@
         /// Gender
         /// </summary>
         public string Gender { get; set; }
+        /// <summary>
+        /// PassengerType
+        /// </summary>
+        public string PassengerType { get; set; }
+        /// <summary>
+        /// Gate
+        /// </summary>
+        public string? Gate { get; set; }
     }
 }
