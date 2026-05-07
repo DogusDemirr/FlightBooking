@@ -6,7 +6,6 @@
         /// PassengerId
         /// </summary>
         public string PassengerId { get; set; }
-
         /// <summary>
         /// Name
         /// </summary>
@@ -31,5 +30,22 @@
         /// Gate
         /// </summary>
         public string? Gate { get; set; }
+        /// <summary>
+        /// SeatNumber
+        /// </summary>
+        public string? SeatNumber { get; set; }
+        /// <summary>
+        /// Check-In Status
+        /// </summary>
+        public string? CheckInStatus { get; set; }
+
+        /// <summary>
+        /// TicketStatus
+        /// </summary>
+        public string? TicketStatus { get; set; }
+        /// <summary>
+        /// PaymentStatus
+        /// </summary>
+        public string? PaymentStatus { get; set; }
     }
 }
