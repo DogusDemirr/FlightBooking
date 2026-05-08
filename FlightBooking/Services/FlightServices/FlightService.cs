@@ -12,38 +12,28 @@ namespace FlightBooking.Services.FlightServices
         private readonly IMapper _mapper;
         private readonly IMongoCollection<Flight> _flightCollection;
         private readonly IMongoCollection<Booking> _bookingCollection;
-
-        /// <summary>
-        /// DI impl
-        /// </summary>
-        /// <param name="mapper"></param>
         public FlightService(IMapper mapper, IDatabaseSettings _databaseSettings)
         {
             var client = new MongoClient(_databaseSettings.ConnectionString);
             var database = client.GetDatabase(_databaseSettings.DatabaseName);
             _flightCollection = database.GetCollection<Flight>(_databaseSettings.FlightCollectionName);
+            _bookingCollection = database.GetCollection<Booking>(_databaseSettings.BookingCollectionName);
             _mapper = mapper;
         }
         public async Task CreateFlightAsync(CreateFlightDto createFlightDto)
         {
-            //ToDo: validation
             var values = _mapper.Map<Flight>(createFlightDto);
             await _flightCollection.InsertOneAsync(values);
         }
-
         public async Task DeleteFlightAsync(string id)
         {
-            //ToDo: validation
             await _flightCollection.DeleteOneAsync(x => x.FlightId == id);
         }
-
         public async Task<List<ResultFlightDto>> GetAllFlightsAsync()
         {
-            //ToDo: validation
             var values = await _flightCollection.Find(x => true).ToListAsync();
             return _mapper.Map<List<ResultFlightDto>>(values);
         }
-
         public async Task<GetFlightByIdDto> GetFlightByIdAsync(string id)
         {
             var value = await _flightCollection.Find(x => x.FlightId == id).FirstOrDefaultAsync();
@@ -52,8 +42,10 @@ namespace FlightBooking.Services.FlightServices
 
         public async Task<List<PassengerListItemDto>> GetFlightDetailsWithPassengers(string id)
         {
+            // 1. O uçuşa ait tüm booking'leri çek
             var bookings = await _bookingCollection.Find(x => x.FlightId == id).ToListAsync();
 
+            // 2. Her booking içindeki yolcuları düzleştir ve DTO'ya map et
             var passengers = bookings
                 .SelectMany(b => b.Passengers.Select(p => new PassengerListItemDto
                 {
@@ -67,7 +59,7 @@ namespace FlightBooking.Services.FlightServices
                     // Aşağıdaki alanlar Passenger entity'nde varsa doğrudan al
                     SeatNumber = p.SeatNumber,
                     CheckInStatus = p.CheckInStatus,
-                    //PaymentStatus = b.PaymentStatus,
+                    // PaymentStatus = b.PaymentStatus,
                     TicketStatus = p.TicketStatus,
                     PassengerId = p.PassengerId
                 }))
@@ -75,9 +67,9 @@ namespace FlightBooking.Services.FlightServices
 
             return passengers;
         }
+
         public async Task UpdateFlightAsync(UpdateFlightDto updateFlightDto)
         {
-            //ToDo: validation
             var values = _mapper.Map<Flight>(updateFlightDto);
             await _flightCollection.FindOneAndReplaceAsync(x => x.FlightId == updateFlightDto.FlightId, values);
         }
