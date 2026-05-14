@@ -8,7 +8,7 @@ namespace FlightBooking.Areas.Admin.Controllers
     {
         public IActionResult Index(string id)
         {
-            ViewBag.flightNumber = TempData["FlightNumber"];
+            ViewBag.FlightNumber = TempData["FlightNumber"];
             return View();
         }
     }
