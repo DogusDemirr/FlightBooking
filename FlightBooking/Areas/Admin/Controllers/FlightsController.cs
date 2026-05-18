@@ -1,5 +1,6 @@
 ﻿using FlightBooking.Constants;
 using FlightBooking.Dtos.FlightDtos;
+using FlightBooking.Services.BookingServices;
 using FlightBooking.Services.FlightServices;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,7 +10,7 @@ namespace FlightBooking.Areas.Admin.Controllers
     public class FlightsController : Controller
     {
         private readonly IFlightService _flightService;
-
+        private readonly IBookingService _bookingService;
         public FlightsController(IFlightService flightService)
         {
             _flightService = flightService;
